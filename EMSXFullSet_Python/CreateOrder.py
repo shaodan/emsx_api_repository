@@ -69,9 +69,12 @@ class SessionEventHandler():
                 request.set("EMSX_TICKER", "IBM US Equity")
                 request.set("EMSX_AMOUNT", 1000)
                 request.set("EMSX_ORDER_TYPE", "MKT")
+                # request.set("EMSX_ORDER_TYPE", "LMT")
+                # request.set("EMSX_LIMIT_PRICE", 123.45)
                 request.set("EMSX_TIF", "DAY")
                 request.set("EMSX_HAND_INSTRUCTION", "ANY")
                 request.set("EMSX_SIDE", "BUY")
+                request.set("EMSX_BROKER", "CSEC")
 
             
                 # The fields below are optional

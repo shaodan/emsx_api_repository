@@ -2,7 +2,24 @@
 
 import blpapi
 import sys
+import datetime
 
+class Logger(object):
+    def __init__(self):
+        self.terminal = sys.stdout
+        self.log = open("logfile.log", "a")
+
+    def write(self, message):
+        self.terminal.write(message)
+        self.log.write(message)  
+
+    def flush(self):
+        #this flush method is needed for python 3 compatibility.
+        #this handles the flush command by doing nothing.
+        #you might want to specify some extra behavior here.
+        pass    
+
+sys.stdout = Logger()
 
 ORDER_ROUTE_FIELDS              = blpapi.Name("OrderRouteFields")
 
@@ -84,6 +101,7 @@ class SessionEventHandler(object):
             if msg.messageType() == SESSION_STARTED:
                 print ("Session started...")
                 session.openServiceAsync(d_service)
+                print("openServiceAsync finished")
                 
             elif msg.messageType() == SESSION_STARTUP_FAILURE:
                 print ("Error: Session startup failed", file=sys.stderr)
@@ -151,7 +169,8 @@ class SessionEventHandler(object):
                 event_status = msg.getElementAsInteger("EVENT_STATUS")
                 
                 if event_status == 1:
-                
+                    # heartbeat
+                    continue
                     if msg.correlationIds()[0].value() == orderSubscriptionID.value():
                         #print ("O", end=".",)
                         print ("O."),
@@ -160,8 +179,9 @@ class SessionEventHandler(object):
                         #print ("R", end=".",)
                         print ("R."),
                         pass
-                    
-                elif event_status == 11:
+                
+                print(datetime.datetime.now())  
+                if event_status == 11:
                 
                     if msg.correlationIds()[0].value() == orderSubscriptionID.value():
                         print ("Order - End of initial paint")

@@ -71,7 +71,7 @@ class SessionEventHandler():
                 routes = request.getElement("ROUTES")
     
                 route = routes.appendElement()
-                route.getElement("EMSX_SEQUENCE").setValue(4113567)
+                route.getElement("EMSX_SEQUENCE").setValue(3548139)
                 route.getElement("EMSX_ROUTE_ID").setValue(1)
             
                 print ("Request: %s" % request.toString())

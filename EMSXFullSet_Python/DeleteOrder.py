@@ -67,7 +67,7 @@ class SessionEventHandler():
 
                 #request.set("EMSX_REQUEST_SEQ", 1)
                 
-                request.getElement("EMSX_SEQUENCE").appendValue(4115597)
+                request.getElement("EMSX_SEQUENCE").appendValue(3548137)
                 #request.getElement("EMSX_SEQUENCE").appendValue(1234567)
 
             
